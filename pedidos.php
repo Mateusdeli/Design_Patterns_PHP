@@ -1,20 +1,17 @@
 <?php
 
 use Alura\DesignPattern\Orcamento;
-use Alura\DesignPattern\Pedido;
-use Alura\DesignPattern\TemplatePedidos;
+use Alura\DesignPattern\Pedidos\GeradorPedidos;
+use Alura\DesignPattern\Pedidos\TemplatePedidos;
+use Alura\DesignPattern\Pedidos\Pedido;
 
 require 'vendor/autoload.php';
 
-$pedidos = [];
-$dados = new TemplatePedidos(md5('a'), new \DateTimeImmutable());
+$geradorPedidos = new GeradorPedidos();
 
 for ($i = 0; $i < 10000; $i++) {
-    $pedido = new Pedido();
-    $pedido->dados = $dados;
-    $pedido->orcamento = new Orcamento();
-
-    $pedidos[] = $pedido;
+    $orcamento = new Orcamento();
+    $geradorPedidos->gerarPedido('Mateus Deli', date('Y-m-d'), $orcamento);
 }
 
 echo memory_get_peak_usage();
