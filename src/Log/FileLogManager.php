@@ -4,15 +4,14 @@ namespace Alura\DesignPattern\Log;
 
 class FileLogManager extends LogManager
 {
+    private string $caminhoArquivo;
 
-    private string $path;
-
-    public function __construct(string $path) {
-        $this->path = $path;
+    public function __construct(string $caminhoArquivo) {
+        $this->caminhoArquivo = $caminhoArquivo;
     }
 
-    public function criarLogWritter(): LogWritter
+    public function createLog(): LogWritter
     {
-        return new FileLogWritter($this->path);
+        return new FileLogWritter($this->caminhoArquivo);
     }
 }

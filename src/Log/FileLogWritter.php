@@ -4,19 +4,20 @@ namespace Alura\DesignPattern\Log;
 
 class FileLogWritter implements LogWritter
 {
-    private $file;
 
-    public function __construct(string $path) {
-        $this->file = fopen($path, 'a+');
+    private $arquivo;
+
+    public function __construct(string $caminhoArquivo) {
+        $this->arquivo = fopen($caminhoArquivo, 'a+');
     }
 
-    public function log($mensagemFormatada): void
+    public function log(string $mensagemLog): void
     {
-        fwrite($this->file, $mensagemFormatada);
+        fwrite($this->arquivo, $mensagemLog . PHP_EOL);
     }
 
     public function __destruct()
     {
-        fclose($this->file);
+        fclose($this->arquivo);
     }
 }

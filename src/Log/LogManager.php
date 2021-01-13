@@ -5,14 +5,12 @@ namespace Alura\DesignPattern\Log;
 abstract class LogManager
 {
     
-    public function log(string $severidade, string $mensagem): void
+    public function log(string $nivelLog, string $mensagemLog)
     {
-        $logWritter = $this->criarLogWritter();
-        $dataHoje = date('d/m/Y');
-        $mensagemFormatada = "[$dataHoje][$severidade]: $mensagem" . PHP_EOL;
-        $logWritter->log($mensagemFormatada);
+        $dataAtual = date('d/m/Y');
+        $mensagemFormatada = "[$dataAtual][$nivelLog]: $mensagemLog";
+        ($this->createLog())->log($mensagemFormatada);
     }
 
-    abstract public function criarLogWritter(): LogWritter;
-
+    abstract public function createLog(): LogWritter;
 }
