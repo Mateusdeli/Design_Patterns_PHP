@@ -3,6 +3,7 @@
 namespace Alura\DesignPattern\NotaFiscal;
 
 use Alura\DesignPattern\ItemOrcamento;
+use Alura\DesignPattern\Orcamento;
 use DateTimeImmutable;
 use DateTimeInterface;
 
@@ -16,7 +17,7 @@ class NotaFiscalBuilder
         $this->notaFiscal->dataEmissao = new DateTimeImmutable();
     }
 
-    public function build(): NotaFiscal
+    public function getNotaFiscal(): NotaFiscal
     {
         return $this->notaFiscal;
     }
@@ -28,9 +29,9 @@ class NotaFiscalBuilder
         return $this;
     }
 
-    public function withItem(ItemOrcamento $itemOrcamento): self
+    public function withOrcamento(Orcamento $orcamento): self
     {
-        $this->notaFiscal->itens[] =  $itemOrcamento;
+        $this->notaFiscal->orcamento =  $orcamento;
         return $this;
     }
 
